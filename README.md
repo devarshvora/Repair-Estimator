@@ -1,7 +1,5 @@
 # Spark Homes Field Estimator
 
-Submitted by: Devarsh Vora
-
 ## Overview
 
 Spark Homes Field Estimator is a mobile-first Progressive Web App for property acquisition walkthroughs. It helps a field agent create a property project, walk room by room, select repair items, enter quantities, attach photos, review offer numbers, and export a ZIP package with the estimate spreadsheet and project photos.
