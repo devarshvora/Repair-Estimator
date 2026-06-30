@@ -1,6 +1,5 @@
 // Spark Field Estimator service worker
-// v59: clean Excel export workbook + robust GitHub Pages + iOS offline app shell cache.
-const CACHE_NAME = 'spark-field-estimator-v59';
+const CACHE_NAME = 'spark-field-estimator-v60';
 const SCOPE = self.registration.scope;
 const toURL = (path) => new URL(path, SCOPE).href;
 const APP_SHELL = [
