@@ -3405,8 +3405,9 @@ async function exportZip(){
       const profit=arv-purchase-hold-total;
       const roi=(purchase+hold+total)>0 ? profit/(purchase+hold+total) : 0;
       const mao=(arv*0.70)-total;
-      const reviewedCount=countReviewedGroups(p);
-      const totalGroups=countTotalGroups(p)||1;
+      const groupStats=countGroups(p);
+      const reviewedCount=groupStats.done;
+      const totalGroups=groupStats.total||1;
       const photoCount=(p.photos||[]).length;
 
       const checkedRows=[];
