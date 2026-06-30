@@ -1,109 +1,75 @@
-# Spark Homes Field Estimator
+# Spark Repair Estimator
+
+A mobile-first Progressive Web App for creating property repair estimates during walkthroughs. The app helps an acquisition or operations user review repair scope, add rooms, capture photos, adjust pricing, and export a project package from a phone or desktop browser.
 
 ## Overview
 
-Spark Homes Field Estimator is a mobile-first Progressive Web App for property acquisition walkthroughs. It helps a field agent create a property project, walk room by room, select repair items, enter quantities, attach photos, review offer numbers, and export a ZIP package with the estimate spreadsheet and project photos.
+Spark Repair Estimator is built as a static web app using HTML, CSS, and JavaScript. It is designed for fast property review where the user needs to move room by room, select repair items, add notes, and keep a running estimate visible while walking the home.
 
-The app is built for real phone use during a walkthrough. The focus is large touch targets, offline storage, a running repair total, room-by-room structure, and simple field language.
+The app supports configurable room instances, repair groups, quantity-based pricing, item-level price overrides, project notes, photo uploads, and ZIP export. It also includes a Tools section with offer support and walkthrough guidance to help reduce missed scope before leaving the property.
 
-## How to run locally
+## Key Features
 
-No build step, backend, or Node server is required.
+- Mobile-first layout for phone-based walkthroughs
+- Configurable rooms such as Bathroom 2, Bedroom 3, or Living/Common Area
+- Collapsible repair groups for faster review
+- 75+ repair items organized by repair category
+- Quantity and price override support
+- Project notes and room-level repair notes
+- Photo upload support
+- ZIP export with project data and photos
+- Local project saving in the browser
+- Offline-first PWA behavior after the initial installed-app launch
+- Light and dark theme support
 
-For a quick preview, open `index.html` in a browser.
+## Tools Section
 
-For proper PWA/offline testing, serve the folder as static files:
+### Offer Worksheet
 
-```bash
-python3 -m http.server 8000
-```
+Helps turn the repair estimate into a simple offer calculation. The user can enter ARV, target percentage, closing or holding costs, and the app shows a maximum allowable offer estimate.
 
-Then open:
+### Offer Risk Check
+
+Highlights items that may need a closer review before leaving the property. This is meant to help the user catch missing or higher-risk repair scope during the walkthrough.
+
+### Walkthrough Guide
+
+Provides a simple walkthrough flow so the user can see what areas still need review. It is designed to reduce missed rooms, missing notes, or incomplete repair groups.
+
+## Non-Obvious Button Guide
+
+Only buttons that may not be immediately clear are listed here.
+
+| Button | What it does |
+|---|---|
+| `CSV Upload` | Updates standard repair prices from a CSV file while keeping the app item IDs consistent. |
+| Pencil icon beside project name | Edits the current project name or address. |
+| Light/Dark toggle | Switches the app between light mode and dark mode. |
+| `No Action Needed` | Marks a group as reviewed even when no repair item is needed for that area. |
+| Unit cost field | Overrides the default price for that repair item in the current project. |
+| `Upload Photo` | Adds a photo from the device to the project export. |
+| `Export ZIP` | Downloads the project estimate, notes, and photos as a ZIP package. |
+
+## Offline-First Behavior
+
+The app is implemented as a static PWA with a service worker and browser-based project storage. After the first successful launch from the installed Home Screen app while online, the service worker caches the application shell and required static assets. This allows the estimator to reopen without a network connection and continue using the saved project data stored locally in the browser.
+
+This approach keeps the walkthrough experience available during property visits where cellular coverage may be weak, while still using a lightweight static deployment model.
+
+## Project Structure
 
 ```text
-http://localhost:8000
+index.html
+manifest.json
+sw.js
+jszip.min.js
+icon-180.png
+icon-192.png
+icon-512.png
+Spark_Field_Estimator_One_Page_Writeup.pdf
+README.md
 ```
 
-For final review, upload the folder contents to GitHub Pages, Netlify, Vercel, or any static host.
+## Notes
 
-## PWA and offline testing
-
-1. Open the hosted URL once while online.
-2. Add the app to the Home Screen on iOS or Android.
-3. Open the Home Screen app once while online so the service worker can cache the app files.
-4. Create a project, add rooms, select repairs, add notes, and upload a photo.
-5. Turn on airplane mode.
-6. Reopen the Home Screen app and confirm the project remains saved.
-
-Note for iPhone/iPad: after adding the app to the Home Screen, open the pinned app once while connected to the internet. After that first launch, the app can reopen offline with saved project data.
-
-## Main screens
-
-### Walkthrough
-
-The main field screen. Agents add rooms, open repair groups, check repair items, enter quantities, mark groups as reviewed, add notes, and track the running repair total.
-
-### Photos
-
-The evidence screen. Agents upload property photos from the device and review/remove them before export.
-
-### Summary
-
-The review screen. It shows the selected repair scope, totals, notes, photos, and export option.
-
-### Tools
-
-The support screen for offer decisions and walkthrough quality checks.
-
-- **Offer Worksheet**: uses ARV, purchase price, holding costs, and repair estimate to calculate profit, ROI, and 70% Rule MAO.
-- **Offer Risk Check**: flags high-cost repairs, missing evidence, and unfinished review areas before making an offer.
-- **Walkthrough Guide**: suggests what room or repair group should be checked next.
-
-## Button guide
-
-Only the main action buttons are listed here so the reviewer can understand the app quickly.
-
-| Button / Control | What it does |
-|---|---|
-| Menu | Opens saved projects, project switching, and new project controls. |
-| Total pill | Shows the live repair estimate total. |
-| Project pencil | Edits the active project name or address. |
-| CSV upload | Updates standard repair prices from a CSV file using item IDs. |
-| Theme toggle | Switches between light and dark mode. |
-| Add room | Adds another room instance, such as Bathroom 2 or Bedroom 3. |
-| Room card | Opens or collapses a room and shows that room's repair scope. |
-| Repair checkbox | Adds or removes a repair item from the estimate. |
-| Quantity / unit cost | Adjusts repair quantity or overrides the price for the current project. |
-| No Action Needed | Marks a group reviewed when no repair is needed. |
-| Add custom item | Adds a one-off repair item to the current project. |
-| Upload Photo | Adds property evidence photos from the device. |
-| Export ZIP | Downloads the estimate spreadsheet and project photos in one ZIP file. |
-| Offer Worksheet | Calculates offer math, profit, ROI, and 70% Rule MAO. |
-| Offer Risk Check | Checks the estimate for risks before leaving the property. |
-| Walkthrough Guide | Shows the next unfinished room or group to inspect. |
-
-## Core features
-
-- Static HTML/CSS/JavaScript app.
-- Mobile-first layout for field walkthroughs.
-- Multiple saved projects using localStorage.
-- Configurable room instances.
-- 75+ repair line items with id-based pricing.
-- Required repair groups and collapsible sections.
-- Project notes, photo evidence, price overrides, and custom items.
-- CSV global pricing update.
-- ZIP export with spreadsheet and photos.
-- PWA manifest, service worker, icons, and offline app shell caching.
-
-## Libraries used
-
-- Vanilla HTML, CSS, and JavaScript.
-- JSZip, included locally as `jszip.min.js`, for ZIP export.
-- xlsx-js-style from CDN for styled Excel export when online.
-- Browser APIs: localStorage, FileReader, Service Worker, Web App Manifest, and file input.
-
-If the Excel styling library is unavailable offline, the export flow still provides an Excel-readable fallback.
-
-## Notes and tradeoffs
-
-The app is static and offline-first. Photos are stored locally in the browser, which works for a prototype but can hit storage limits if many high-resolution photos are uploaded. Serial number parsing is only a basic helper, not full OCR. In a production version, I would add photo compression, stronger OCR for equipment plates, and team sync after the device reconnects.
+This project was built for the Spark Homes Developer Contest as a practical walkthrough estimator. The focus is on real use during a property visit: quick navigation, clear repair scope, editable pricing, photo collection, and a clean export for follow-up review.
