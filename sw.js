@@ -1,5 +1,5 @@
 // Spark Field Estimator service worker
-const CACHE_NAME = 'spark-field-estimator-v61';
+const CACHE_NAME = 'spark-field-estimator-v64';
 const SCOPE = self.registration.scope;
 const toURL = (path) => new URL(path, SCOPE).href;
 const APP_SHELL = [
