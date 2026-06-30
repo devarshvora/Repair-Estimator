@@ -2,6 +2,10 @@
 
 A mobile-first Progressive Web App for creating property repair estimates during walkthroughs. The app helps an acquisition or operations user review repair scope, add rooms, capture photos, adjust pricing, and export a project package from a phone or desktop browser.
 
+## Live Demo
+
+https://devarshvora.github.io/Repair-Estimator/
+
 ## Overview
 
 Spark Repair Estimator is built as a static web app using HTML, CSS, and JavaScript. It is designed for fast property review where the user needs to move room by room, select repair items, add notes, and keep a running estimate visible while walking the home.
