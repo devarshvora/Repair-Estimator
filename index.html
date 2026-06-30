@@ -3458,7 +3458,7 @@ async function exportZip(){
       styleRange(wsSummary,6,1,8,1,styles.value); styleRange(wsSummary,6,3,8,3,styles.value);
       styleRange(wsSummary,10,0,10,3,styles.section); styleRange(wsSummary,11,0,11,3,styles.note);
       ['B3','B7','D7','B8','D8','B9'].forEach(a=>setNumFmt(wsSummary,a,moneyFmt));
-      setNumFmt(wsSummary,'D4',pctFmt); setNumFmt(wsSummary,'D9',pctFmt);
+      setNumFmt(wsSummary,'D3','0'); setNumFmt(wsSummary,'D4',pctFmt); setNumFmt(wsSummary,'D9',pctFmt);
       XLSX.utils.book_append_sheet(wb,wsSummary,'Summary');
 
       const repair=[['Room','Group','Repair Item','Qty','Unit','Unit Cost','Line Total']];
