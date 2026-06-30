@@ -21,7 +21,7 @@ The app supports configurable room instances, repair groups, quantity-based pric
 - Quantity and price override support
 - Project notes and room-level repair notes
 - Photo upload support
-- ZIP export with project data and photos
+- ZIP export with a structured Excel workbook and photos
 - Local project saving in the browser
 - Offline-first PWA behavior after the initial installed-app launch
 - Light and dark theme support
@@ -54,11 +54,26 @@ Only buttons that may not be immediately clear are listed here.
 | `Upload Photo` | Adds a photo from the device to the project export. |
 | `Export ZIP` | Downloads the project estimate, notes, and photos as a ZIP package. |
 
+## Export Package
+
+The **Export ZIP** feature creates a project package for review. Inside the ZIP, the Excel estimate is organized as one workbook with three focused worksheets: **Summary** for project totals, offer math, and notes; **Repair Items** for selected repairs with quantities, unit costs, and line totals; and **Tools Notes** for the Offer Worksheet, Offer Risk Check, and Walkthrough Guide outputs. Photos are included separately in the ZIP so the estimate and evidence can be reviewed together.
+
 ## Offline-First Behavior
 
 The app is implemented as a static PWA with a service worker and browser-based project storage. After the first successful launch from the installed Home Screen app while online, the service worker caches the application shell and required static assets. This allows the estimator to reopen without a network connection and continue using the saved project data stored locally in the browser.
 
 This approach keeps the walkthrough experience available during property visits where cellular coverage may be weak, while still using a lightweight static deployment model.
+
+## Libraries Used
+
+- **JSZip** for creating the downloadable ZIP package in the browser.
+- No frontend framework, backend server, or build step is required.
+
+## Run Locally
+
+No installation is required. Download or clone the repository, then open `index.html` in a modern browser.
+
+For the best mobile experience, use the live demo link and add the app to your phone Home Screen. Once opened from the Home Screen, it behaves like an installable app and can be used during walkthroughs even when connectivity is limited.
 
 ## Project Structure
 
